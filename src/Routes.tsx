@@ -44,6 +44,7 @@ import BankTransfer from './features/payment_support/transfer/BankTransfer';
 import PaymentSupportTools from './features/tools/payment_tools/PaymentSupportTools';
 import PageNotFound from './components/404Page/PageNotFound';
 import CreditHoldTransaction from './features/payment_support/credit_hold_transaction/CreditHoldTransaction';
+import BankAccountList from './features/tools/payment_tools/components/BankAccountList';
 
 const { Content } = Layout;
 
@@ -116,10 +117,7 @@ const RoutesComponent: FC = () => {
                 <Route path=':id' element={<FlightDetail />} />
               </Route>
               {/* FLIGHT_OFFLINE */}
-              <Route path={routes.FLIGHT_OFFLINE} element={<FlightOffline />} />
-              <Route path={routes.FLIGHT_OFFLINE}>
-                <Route path=':id' element={<FlightDetail />} />
-              </Route>
+              <Route path={routes.FLIGHT_OFFLINE} element={<BankAccountList />} />
               <Route path={routes.FLIGHT_OFFLINE}>
                 <Route path={routes.FLIGHT_ADD_NEW_TICKET} element={<AddTicketFlightOffline />} />
               </Route>

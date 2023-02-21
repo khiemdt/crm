@@ -104,7 +104,7 @@ const HeaderFlight = () => {
           </h2>
           <div className='text-grey'>
             {flightOnlineDetail?.orderId && (
-              <span> {`Order: ${flightOnlineDetail?.orderId} - `}</span>
+              <span> {`Order: ${flightOnlineDetail?.orderId}`}</span>
             )}
             {flightOnlineDetail?.parentId && (
               <span>
@@ -114,18 +114,14 @@ const HeaderFlight = () => {
                   target={'_blank'}
                   href={`/sale/flight/online/${flightOnlineDetail?.parentId}`}
                 >
-                  {flightOnlineDetail?.parentId} -
+                  {flightOnlineDetail?.parentId}
                 </a>
               </span>
             )}
-            <span>
-              {' '}
-              CA: <b className='text-success'>{flightOnlineDetail?.caInfo?.name}</b>{' '}
-            </span>
           </div>
         </div>
 
-        <div className='wrapper-header-button'>
+        {/* <div className='wrapper-header-button'>
           <ButtonReceiveProcessing />
           {flightOnlineDetail?.lastSaleId === userInfo?.id &&
             flightOnlineDetail.handlingStatus == 'handling' && (
@@ -148,7 +144,7 @@ const HeaderFlight = () => {
           >
             <IconArrow2way />
           </Button>
-        </div>
+        </div> */}
       </div>
       <SmsEmailModal modal={modal} setModal={setModal} />
     </div>

@@ -46,7 +46,7 @@ const FlightDetail = () => {
       <div
         className='content-flight'
         style={{
-          width: isOptimize ? '100%' : collapsible ? 'calc(100% - 550px)' : 'calc(100% - 340px)',
+          width: !isOptimize ? '100%' : collapsible ? 'calc(100% - 550px)' : 'calc(100% - 340px)',
         }}
       >
         <HeaderFlight />
@@ -57,12 +57,8 @@ const FlightDetail = () => {
           <TabPane tab='LỊCH SỬ THANH TOÁN' key='2'>
             <PaymentHistory />
           </TabPane>
-          <TabPane tab='XUẤT HÓA ĐƠN' key='3'>
-            <InvoiceFlight id={id} module='flight' />
-          </TabPane>
         </Tabs>
       </div>
-      {!isOptimize && <NoteTabs />}
       <BackTop>
         <div className='btn-scroll-top'>
           <IconCaretUp />

@@ -1,5 +1,5 @@
 import { DownOutlined, SearchOutlined } from '@ant-design/icons';
-import { Button, Col, Dropdown, Menu, Row, Space, Table, Tag } from 'antd';
+import { Button, Col, Dropdown, Menu, Row, Select, Space, Table, Tag } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { useState } from 'react';
 import { createSearchParams, useNavigate } from 'react-router-dom';
@@ -44,6 +44,7 @@ const ContentData = () => {
   const totalBookingsOnline: number = useAppSelector(
     (state) => state.flightReducer.totalBookingsOnline,
   );
+  const [dataTable, setDataTable] = useState<any[]>(bookingsOnline);
 
   const onChangePagination = (page: number, size: number) => {
     handleChangeRoute(filterOnline, { page, pageSize: size });
@@ -67,22 +68,6 @@ const ContentData = () => {
     });
   };
 
-  const handelModelSMS = (itemsDataRow: some) => {
-    setModal({
-      type: MODAL_KEY_SMS,
-      open: true,
-      item: itemsDataRow,
-    });
-  };
-
-  const handelModelEmail = (itemsDataRow: some) => {
-    setModal({
-      type: MODAL_KEY_EMAIL,
-      open: true,
-      item: itemsDataRow,
-    });
-  };
-
   const handelRefresh = () => {
     dispatch(
       fetFlightBookings({
@@ -93,12 +78,22 @@ const ContentData = () => {
     );
   };
 
+  const onSelect = (value: any) => {
+    if (!value) {
+      setDataTable(bookingsOnline);
+    } else {
+      const arr = bookingsOnline.filter((el) => {
+        return el.id == value;
+      });
+      setDataTable(arr);
+    }
+  };
+
   const columns: ColumnsType<BookingsOnlineType> = [
     {
       title: 'Booking ID',
       dataIndex: 'orderCode',
       key: 'orderCode',
-      width: 80,
       render: (_, record) => {
         return (
           <div
@@ -109,17 +104,9 @@ const ContentData = () => {
             }}
             style={{ padding: '12px auto' }}
           >
-            {record.orderCode}
+            {record.id}
           </div>
         );
-      },
-    },
-    {
-      title: 'CA',
-      dataIndex: 'caInfo',
-      key: 'caInfo',
-      render: (text) => {
-        return <div style={{ minWidth: '80px' }}>{text.name}</div>;
       },
     },
     {
@@ -143,14 +130,6 @@ const ContentData = () => {
       dataIndex: 'bookedDate',
     },
     {
-      title: 'Người đặt',
-      key: 'mainContact',
-      dataIndex: 'mainContact',
-      render: (text) => {
-        return <>{`${text?.fullName}`}</>;
-      },
-    },
-    {
       title: 'Tổng tiền',
       key: 'totalSellingPrice',
       dataIndex: 'totalSellingPrice',
@@ -170,32 +149,6 @@ const ContentData = () => {
         return <Tag color={status.color}>{`${status?.title}`}</Tag>;
       },
       width: 140,
-    },
-    {
-      title: 'Trạng thái thanh toán',
-      key: 'paymentStatus',
-      dataIndex: 'paymentStatus',
-      render: (text) => {
-        const status = getPaymentStatusFlight(text);
-        return <Tag color={status.color}>{`${status?.title}`}</Tag>;
-      },
-      width: 150,
-    },
-    {
-      title: 'Người xử lý',
-      key: 'lastSaleName',
-      dataIndex: 'lastSaleName',
-      render: (text, record) => {
-        return (
-          <LastSale
-            text={text}
-            record={record}
-            handelModelSMS={handelModelSMS}
-            handelModelEmail={handelModelEmail}
-          />
-        );
-      },
-      className: 'column-sale-name',
     },
   ];
 
@@ -219,6 +172,25 @@ const ContentData = () => {
 
   return (
     <>
+      <Row style={{ margin: '15px 0px' }}>
+        <Col span={4}>
+          <Select
+            className='ant-select-selection-search'
+            style={{ minWidth: 200 }}
+            placeholder='Mã đơn hàng'
+            showSearch
+            onSelect={onSelect}
+          >
+            {[{ id: null, name: 'Tất cả' }, ...bookingsOnline].map((elm: some, index: number) => {
+              return (
+                <Select.Option key={index} value={elm?.id}>
+                  {elm?.name}
+                </Select.Option>
+              );
+            })}
+          </Select>
+        </Col>
+      </Row>
       <Row className='title-total-items' justify='space-between'>
         <Col>
           <Space>
@@ -228,18 +200,18 @@ const ContentData = () => {
             </div>
           </Space>
         </Col>
-        <Col>
+        {/* <Col>
           <Dropdown placement='bottomRight' overlay={<Menu items={spToolsItem()} />}>
             <Button type='primary' icon={<DownOutlined />}>
               Công cụ hỗ trợ
             </Button>
           </Dropdown>
-        </Col>
+        </Col> */}
       </Row>
       <Table
         rowKey={(record) => record.orderCode}
         columns={columns}
-        dataSource={bookingsOnline}
+        dataSource={dataTable}
         loading={isLoading}
         pagination={false}
         onRow={(record, rowIndex) => {
@@ -250,8 +222,8 @@ const ContentData = () => {
           };
         }}
       />
-      {!isEmpty(bookingsOnline) &&
-        !(pagingOnline.page === 1 && bookingsOnline.length < pagingOnline.pageSize) && (
+      {!isEmpty(dataTable) &&
+        !(pagingOnline.page === 1 && dataTable.length < pagingOnline.pageSize) && (
           <PaginationTable
             page={pagingOnline.page - 1}
             size={pagingOnline.pageSize}

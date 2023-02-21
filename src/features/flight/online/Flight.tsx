@@ -99,7 +99,6 @@ const Flight = () => {
       <span className='title'>
         <FormattedMessage id='IDS_TEXT_LIST_FLIGHT_ONLINE_TITLE' />
       </span>
-      <Filter />
       <ContentData />
       <InputBackTop />
     </div>

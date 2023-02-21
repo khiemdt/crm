@@ -192,52 +192,52 @@ const LeftSideBar = () => {
         //     ),
         //   ],
         // ),
-        getItem(
-          <FormattedMessage id='IDS_TEXT_APPROVAL' />,
-          `/${routes.SALE}/${routes.APPROVAL}`,
+        // getItem(
+        //   <FormattedMessage id='IDS_TEXT_APPROVAL' />,
+        //   `/${routes.SALE}/${routes.APPROVAL}`,
 
-          checkIconSelected(`/${routes.SALE}/${routes.APPROVAL}`) ? (
-            <IconApprovalDark />
-          ) : (
-            <IconApproval />
-          ),
-          [
-            getItem(
-              <a href='#'>
-                <FormattedMessage id='IDS_TEXT_FLIGHT_REFUND' />
-              </a>,
-              `/${routes.SALE}/${routes.APPROVAL}/${routes.FLIGHT}`,
-              null,
-            ),
-            // getItem(
-            //   <FormattedMessage id='IDS_TEXT_HOTEL_REFUND' />,
-            //   `/${routes.SALE}/${routes.APPROVAL}/${routes.HOTEL}`,
-            //   null,
-            // ),
-          ],
-        ),
-        getItem(
-          <FormattedMessage id='IDS_TEXT_PAYMENT_SUPPORT' />,
-          `/${routes.SALE}/${routes.PAYMENT_SUPPORT}`,
-          checkIconSelected(`/${routes.SALE}/${routes.PAYMENT_SUPPORT}`) ? (
-            <IconRevenue />
-          ) : (
-            <IconRevenueDark />
-          ),
-          [
-            getItem(
-              <a href='#'>
-                <FormattedMessage id='IDS_TEXT_TRANSFER' />
-              </a>,
-              `/${routes.SALE}/${routes.PAYMENT_SUPPORT}/${routes.BANK_TRANSFER}`,
-              null,
-            ),
-            getItem(
-              <FormattedMessage id='IDS_TEXT_CREDIT_HOLD' />,
-              `/${routes.SALE}/${routes.PAYMENT_SUPPORT}/${routes.CREDIT_TRANSFER}`,
-            ),
-          ],
-        ),
+        //   checkIconSelected(`/${routes.SALE}/${routes.APPROVAL}`) ? (
+        //     <IconApprovalDark />
+        //   ) : (
+        //     <IconApproval />
+        //   ),
+        //   [
+        //     getItem(
+        //       <a href='#'>
+        //         <FormattedMessage id='IDS_TEXT_FLIGHT_REFUND' />
+        //       </a>,
+        //       `/${routes.SALE}/${routes.APPROVAL}/${routes.FLIGHT}`,
+        //       null,
+        //     ),
+        //     // getItem(
+        //     //   <FormattedMessage id='IDS_TEXT_HOTEL_REFUND' />,
+        //     //   `/${routes.SALE}/${routes.APPROVAL}/${routes.HOTEL}`,
+        //     //   null,
+        //     // ),
+        //   ],
+        // ),
+        // getItem(
+        //   <FormattedMessage id='IDS_TEXT_PAYMENT_SUPPORT' />,
+        //   `/${routes.SALE}/${routes.PAYMENT_SUPPORT}`,
+        //   checkIconSelected(`/${routes.SALE}/${routes.PAYMENT_SUPPORT}`) ? (
+        //     <IconRevenue />
+        //   ) : (
+        //     <IconRevenueDark />
+        //   ),
+        //   [
+        //     getItem(
+        //       <a href='#'>
+        //         <FormattedMessage id='IDS_TEXT_TRANSFER' />
+        //       </a>,
+        //       `/${routes.SALE}/${routes.PAYMENT_SUPPORT}/${routes.BANK_TRANSFER}`,
+        //       null,
+        //     ),
+        //     getItem(
+        //       <FormattedMessage id='IDS_TEXT_CREDIT_HOLD' />,
+        //       `/${routes.SALE}/${routes.PAYMENT_SUPPORT}/${routes.CREDIT_TRANSFER}`,
+        //     ),
+        //   ],
+        // ),
       ],
       '',
       'group',

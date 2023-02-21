@@ -19,8 +19,8 @@ const InfoFlight = () => {
         </Col>
         <Guests />
       </div>
-      <AriseFlightBooking />
-      <PolicyNotesTabs />
+      {/* <AriseFlightBooking />
+      <PolicyNotesTabs /> */}
     </div>
   );
 };
