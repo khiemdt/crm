@@ -1,0 +1,116 @@
+@import '../../../scss/variables.module.scss';
+
+.fl-approval-container {
+  padding: 16px;
+  .fl-approval-total-title {
+    font-weight: 500;
+    color: $grey900Text;
+    line-height: 20px;
+    padding-bottom: 8px;
+    display: flex;
+  }
+  .fl-approval-filter-form {
+    .item-btn-filter {
+      background-color: #f2f3f3;
+      border: none;
+      color: $greyText;
+      align-items: center;
+      display: flex;
+      padding: 0 12px;
+      transition: all 0.3s;
+
+      &.item-btn-filter-active {
+        background-color: $greyText;
+        color: $whiteColor;
+
+        .first-name {
+          color: $whiteColor;
+        }
+      }
+
+      .number-tag {
+        border-radius: 20px;
+        background-color: $grey100;
+        color: $greyText;
+        line-height: 20px;
+        padding: 0 8px;
+        margin-left: 4px;
+      }
+
+      .first-name {
+        margin-left: 4px;
+        font-weight: 500;
+        color: $grey900Text;
+      }
+    }
+    .status-button {
+      font-weight: 400;
+      border-radius: 99px;
+      margin-right: 5px;
+    }
+    .submit-button {
+      font-weight: 400;
+      margin-right: 5px;
+    }
+  }
+  .fl-approval-icon-button {
+    padding: 0px;
+    height: 26px;
+    width: 26px;
+    margin-left: 5px;
+    border-radius: 50%;
+    border: none;
+    .fl-approval-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .icon-airline {
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
+  }
+  .fl-approval-filter-container {
+    padding: 20px 0px 14px;
+  }
+  .fl-approval-date-picker {
+    width: 100%;
+  }
+  .fl-approval-select {
+    width: 100%;
+  }
+  .customer-btn-selected {
+    width: 100%;
+    border: 1px solid #d9d9d9 !important;
+    background-color: #fff !important;
+    justify-content: space-between !important;
+  }
+  .fl-approval-ticket-info-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 4px;
+
+    .fl-approval-ticket-info {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      margin-top: 4px;
+
+      .fl-approval-ticket-info-ticket {
+        border: 1px solid $grey100;
+        padding: 6px;
+        border-radius: 4px;
+        width: 140px;
+        margin-right: 4px;
+      }
+      .fl-approval-ticket-info-ticket-price {
+        border: 1px solid $grey100;
+        padding: 6px;
+        border-radius: 4px;
+        width: 120px;
+      }
+    }
+  }
+}

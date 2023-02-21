@@ -1,0 +1,153 @@
+.arise-more-flight {
+  .init-type {
+    display: flex;
+    // color: #8c9497;
+  }
+  .list-status-void {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .btn-clear {
+    border: none;
+    cursor: pointer;
+    width: 24px;
+    padding-top: 4px;
+  }
+
+  .action-form {
+    display: flex;
+    align-items: center;
+
+    .action-remover {
+      margin-left: 8px;
+    }
+  }
+
+  .edit-form {
+    justify-content: space-between;
+  }
+
+  .btn-process {
+    border-color: #007864;
+    color: #007864;
+  }
+
+  .btn-refresh {
+    border-color: #007864;
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+  }
+
+  .btn-right-item {
+    display: flex;
+    align-items: center;
+    color: #004ebc;
+    padding: 0;
+    margin-left: 12px;
+  }
+
+  .payment-status {
+    display: flex;
+    flex-direction: column;
+
+    .payment-text {
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      height: 32px;
+      line-height: 30px;
+      margin-top: 2px;
+      padding: 0 8px;
+      background-color: #fff;
+    }
+
+    .show-dot {
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden !important;
+      text-overflow: ellipsis;
+    }
+  }
+  .void-post-processing {
+    textarea.ant-input {
+      height: auto !important;
+    }
+    .btn-send-reuest {
+      border-color: #007864;
+      color: #007864;
+      margin-left: 12px;
+    }
+    .bank-box {
+      margin: 10px 0px !important;
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid #d9d9d9;
+      background-color: #f7f9fa;
+    }
+    .payment-box-bank {
+      background: #dfedff;
+      padding-top: 8px;
+      margin-bottom: 4px;
+    }
+  }
+}
+
+.modal-trans-info-post-processing {
+  // .ant-modal-body {
+  //   min-height: 450px;
+  // }
+
+  .list-bank {
+    border-bottom: 1px solid #b2b8b9;
+    padding-bottom: 16px;
+
+    .item-bank {
+      display: flex;
+      align-items: center;
+
+      .left-item {
+        border: 1px solid #d9dbdc;
+        border-radius: 8px;
+        width: 96px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        margin: 8px 0;
+
+        .icon-bank {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      .right-item {
+        margin-left: 12px;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  .info-trans {
+    display: flex;
+    flex-direction: column;
+    margin-top: 24px;
+
+    .item-info-trans {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0;
+    }
+  }
+}
+.list-code-options {
+  display: flex;
+  flex-direction: column;
+}
+.btn-remove-item-eticket-flight {
+  top: 2px;
+  border: none;
+  background-color: initial;
+}

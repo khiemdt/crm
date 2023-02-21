@@ -1,0 +1,23 @@
+.td-customer {
+  height: 49px;
+  width: calc(100% / 7);
+  box-sizing: border-box;
+  padding: 0px;
+  user-select: none;
+  transition: background-color 0.3s;
+}
+.header-style {
+  padding: 8;
+  font-weight: 400;
+  font-size: 12;
+  line-height: '18px';
+  text-align: center;
+  color: '#3F4445';
+  background: '#ebf8f5';
+}
+.header-style-first {
+  border-radius: '8px 0 0 8px';
+}
+.header-style-last {
+  border-radius: '0 8px 8px 0';
+}

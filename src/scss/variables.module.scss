@@ -1,0 +1,30 @@
+/**
+* Variables
+*/
+
+// Color system
+$mainColor: #007864; // Button, active
+$mainHover: #EBF8F5; // Button, active
+$backgroundColor: #f7f9fa; // Background
+$grey100: #d9dbdc; // Stroge
+
+$tropicalStatus: #007864; // Success Status
+$yellowStatus: #ffb30f; // Process Status
+$redStatus: #ff2c00; // Fail Status
+
+$grey900Text: #0b0c0d; // Main, active Text
+$greyText: #677072; // Process Text
+$grey300Text: #8c9497; // Process Text
+$grey200Text: #b2b8b9; // Distable Text
+$blueText: #004ebc; // Link Text
+$redText: #ff2c00; // Money total Text
+$GREEN: #00ad50;
+
+// Color pravite
+
+$whiteColor: #fff; // Button, active
+
+:export {
+  primaryColor: $mainColor;
+  textColor: $grey900Text;
+}

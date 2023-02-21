@@ -1,0 +1,147 @@
+@import '../../../../scss/variables.module.scss';
+
+.wrapperModal {
+  .ant-modal-content {
+    background-color: $whiteColor;
+    box-shadow: 0px 16px 22px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+  }
+  .border-info-customer {
+    padding: 10px;
+    border: 1px dashed;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    .ant-row {
+      padding-top: 5px;
+    }
+  }
+  .ant-modal-header {
+    border-radius: 8px;
+  }
+
+  .modal-confirmation {
+    .ant-tabs-tab {
+      width: 100%;
+    }
+
+    .ant-tabs-ink-bar.ant-tabs-ink-bar-animated {
+      width: 100% !important;
+    }
+  }
+
+  .ant-tabs-nav-list {
+    width: 100%;
+  }
+
+  .ant-tabs-nav {
+    margin-bottom: 0;
+  }
+
+  .ant-tabs-tab {
+    width: 50%;
+    justify-content: center;
+    color: $grey900Text;
+  }
+
+  .ant-modal-body {
+    padding: 24px 24px 24px 24px;
+  }
+
+  .ant-modal-footer {
+    border-top: none;
+    padding: 4px 24px 24px 24px;
+  }
+
+  .ant-tabs-tabpane-active {
+    padding-top: 16px;
+  }
+
+  .ant-input-affix-wrapper {
+    border-radius: 4px;
+  }
+
+  .pnr-code-flight-box {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .form-modal {
+    .ant-form-item-no-colon {
+      color: $grey900Text;
+      margin-bottom: 4px;
+      line-height: 20px;
+      display: block;
+      height: auto;
+    }
+
+    .ant-col {
+      margin-bottom: 2px;
+    }
+
+    .ant-form-item {
+      display: block;
+    }
+
+    .ant-form-item .ant-form-item-label {
+      height: auto;
+    }
+
+    textarea.ant-input {
+      padding: 8px;
+    }
+
+    .ant-form .ant-form-item {
+      margin-bottom: 20px;
+    }
+
+    .ant-select-selector {
+      background: $whiteColor;
+      border: 1px solid #b2b8b9;
+      border-radius: 4px;
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      height: auto;
+    }
+
+    input.ant-input.ant-input-disabled {
+      background-color: unset;
+      border: none;
+    }
+
+    .mce-content-body {
+      padding: 14px;
+    }
+  }
+
+  .wrapper-message-model-sms {
+    min-height: 340px;
+
+    .content-message-model-sms {
+      padding: 6px 18px;
+      background: #fffaee;
+      border-radius: 4px;
+    }
+  }
+
+  .wrapperSubmitSms {
+    display: flex;
+    justify-content: flex-end;
+
+    .buttonSubmit {
+      margin-bottom: 0;
+    }
+
+    button {
+      border: none;
+    }
+  }
+
+  .title {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+    padding-bottom: 5px;
+  }
+}

@@ -1,0 +1,207 @@
+@import '../../scss/variables.module.scss';
+
+.header-container {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 56px;
+  background: $backgroundColor;
+  border-bottom: 1px solid $grey100;
+  padding: 0 32px 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: $grey900Text;
+
+  .badge-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    .collapsible-menu {
+      cursor: pointer;
+    }
+  }
+
+  .avatar-info {
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 56px;
+  }
+
+  .ant-avatar {
+    cursor: pointer;
+  }
+}
+
+.popover-userinfo {
+  padding-top: 8px;
+  width: 250px;
+
+  .ant-popover-arrow {
+    display: none;
+  }
+
+  .ant-popover-inner {
+    border-radius: 8px;
+
+    .ant-popover-inner-content {
+      padding: 24px 0;
+      color: $grey900Text;
+
+      .content-user-info {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 24px;
+
+        .avatar-content {
+          width: 56px;
+          height: 56px;
+        }
+
+        .icon-camera {
+          position: absolute;
+          top: 32px;
+          right: 90px;
+          padding: 0;
+        }
+
+        .name-user {
+          font-weight: 500;
+          line-height: 20px;
+          margin-top: 16px;
+        }
+
+        .email-user {
+          color: $greyText;
+          font-size: 12px;
+          line-height: 18px;
+        }
+      }
+
+      .item-menu-user {
+        display: flex;
+        align-items: center;
+        padding: 8px 8px;
+        margin: 0 8px;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: all 0.3s;
+
+        &:hover {
+          background-color: $backgroundColor;
+        }
+
+        .name-item-menu-user {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+}
+
+.container {
+  padding-top: 56px;
+
+  .sider-container {
+    background: $backgroundColor;
+    box-shadow: 1px 0px 0px $grey100;
+    overflow: auto;
+    height: calc(100vh - 56px);
+    position: fixed;
+    left: 0;
+    top: 56px;
+    bottom: 0;
+
+    .group-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .group-item-collapsible {
+      display: flex;
+      justify-content: center;
+    }
+
+    .expand-icon {
+      transition: all 0.3s;
+      transform: rotate(270deg);
+      &.expand-icon-open {
+        transform: rotate(0deg);
+      }
+    }
+
+    .ant-menu {
+      background-color: $backgroundColor;
+    }
+
+    .ant-menu-submenu-title {
+      padding-right: 16px;
+    }
+
+    .ant-menu-item {
+      &:hover {
+        color: $tropicalStatus;
+      }
+    }
+
+    .ant-menu-item-selected {
+      color: $tropicalStatus;
+      background-color: #ebf8f5;
+
+      &::after {
+        border-right-color: $tropicalStatus;
+      }
+    }
+
+    .ant-menu-submenu-expand-icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .ant-menu-submenu-selected {
+      color: $tropicalStatus;
+      background-color: #c8ece5;
+    }
+
+    .ant-menu-submenu-title {
+      &:hover {
+        color: $tropicalStatus;
+      }
+    }
+
+    .ant-layout-sider-trigger {
+      background-color: $mainColor;
+    }
+  }
+
+  .site-layout {
+    margin-left: 240px;
+    transition: all 0.2s;
+
+    &.site-layout-collap {
+      margin-left: 56px;
+    }
+
+    .main-content {
+      overflow: initial;
+      background-color: $whiteColor;
+    }
+  }
+}
+
+// ẩn hiện style sidebar
+.hide-class {
+  display: none;
+
+  .content {
+    height: 5000px;
+    overflow-y: auto;
+  }
+}
