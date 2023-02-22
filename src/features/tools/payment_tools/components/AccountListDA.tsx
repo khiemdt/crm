@@ -1,28 +1,32 @@
-import { Button, Form, Image, message, Modal, Space, Switch, Table } from 'antd';
+import {
+  Button,
+  Drawer,
+  Form,
+  Image,
+  Input,
+  message,
+  Modal,
+  Row,
+  Select,
+  Space,
+  Switch,
+  Table,
+  Tag,
+} from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import React, { useEffect, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
-import { getAllBankCode } from '~/apis/flight';
-import { getAirlines, getAllUserList } from '~/apis/system';
+import { getAllUserList } from '~/apis/system';
 import { fetChangeEnableBankList } from '~/apis/tools';
-import { AllowAgentType } from '~/features/systems/systemSlice';
+import { IconChevronDown } from '~/assets';
 import { some } from '~/utils/constants/constant';
-import { useAppSelector } from '~/utils/hook/redux';
+import { listGender } from '~/utils/constants/dataOptions';
 const AccountListDA: React.FunctionComponent = () => {
-  const [form] = Form.useForm();
-  const allowAgents: AllowAgentType[] = useAppSelector((state) => state.systemReducer.allowAgents);
-  const [listBank, setListBankPayment] = useState<some[]>([]);
   const [listBankRef, setListBankPaymentRef] = useState<some[]>([]);
   const [loading, setLoading] = React.useState<boolean>(false);
-
-  const fetAllBankCode = async () => {
-    try {
-      const { data } = await getAllBankCode();
-      if (data.code === 200) {
-        setListBankPayment(data.data);
-      }
-    } catch (error) {}
-  };
+  const [modal, setModal] = useState<some>({
+    open: false,
+    item: null,
+  });
 
   const changeEnableBankList = async (params: some) => {
     setLoading(true);
@@ -55,7 +59,7 @@ const AccountListDA: React.FunctionComponent = () => {
 
   const confirmModal = (record: some) => {
     Modal.confirm({
-      title: `Bạn có muốn ${record.active ? 'tắt' : 'bật'} hãng ${record.name} `,
+      title: `Bạn có muốn xóa user ${record.firstName}`,
       content: 'Vui lòng xác nhận kỹ thông tin trước khi thao tác!',
       okText: 'Xác nhận',
       cancelText: 'Hủy',
@@ -78,7 +82,7 @@ const AccountListDA: React.FunctionComponent = () => {
       render: (text) => {
         return (
           <div>
-            <Image style={{ borderRadius: '50%' }} width={50} src={text} />
+            <Image style={{ borderRadius: '50%' }} width={30} src={text} />
           </div>
         );
       },
@@ -113,16 +117,38 @@ const AccountListDA: React.FunctionComponent = () => {
       key: 'active',
       render: (text, record) => {
         return (
+          <span>
+            {<Tag color={text ? 'success' : 'error'}>{text ? 'Hoạt động' : 'Không hoạt động'}</Tag>}
+          </span>
+        );
+      },
+    },
+    {
+      title: 'Trạng thái',
+      dataIndex: 'active',
+      key: 'active',
+      render: (text, record) => {
+        return (
           <Space>
-            <Switch
-              onChange={(value, e) => {
-                e.stopPropagation();
+            <Button
+              type='primary'
+              onClick={() => {
+                setModal({
+                  open: true,
+                  item: record,
+                });
+              }}
+            >
+              Sửa
+            </Button>
+            <Button
+              onClick={() => {
                 confirmModal(record);
               }}
-              checked={text}
-            />
-            <Button type='primary'>Sửa</Button>
-            <Button type='ghost'>Xóa</Button>
+              type='ghost'
+            >
+              Xóa
+            </Button>
           </Space>
         );
       },
@@ -135,7 +161,20 @@ const AccountListDA: React.FunctionComponent = () => {
 
   return (
     <div style={{ padding: 16 }}>
-      <h3 className='title'>Danh sách người dùng</h3>
+      <Row justify='space-between' style={{ marginBottom: 15 }}>
+        <h3 className='title'>Danh sách người dùng</h3>
+        <Button
+          type='primary'
+          onClick={() => {
+            setModal({
+              item: {},
+              open: true,
+            });
+          }}
+        >
+          Thêm user
+        </Button>
+      </Row>
       <Table
         rowKey={(record) => record.id}
         columns={columns}
@@ -143,7 +182,86 @@ const AccountListDA: React.FunctionComponent = () => {
         loading={loading}
         pagination={false}
       />
+      <BookingNotesDrawer modal={modal} setModal={setModal} />
     </div>
   );
 };
 export default AccountListDA;
+
+const BookingNotesDrawer = (props: any) => {
+  const { modal, setModal } = props;
+  const { item } = modal;
+  const [form] = Form.useForm();
+
+  const onFinish = async (value: some) => {
+    console.log(value);
+    try {
+      const data = getAllUserList();
+      if (data?.message === 200) {
+        handleClose();
+      } else {
+        message.error(data.message);
+      }
+    } catch (error) {}
+  };
+
+  const handleClose = () => {
+    setModal({
+      item: null,
+      open: false,
+    });
+  };
+  useEffect(() => {
+    form.resetFields();
+  }, [modal]);
+
+  return (
+    <Drawer
+      title='Sửa người dùng'
+      placement='right'
+      onClose={() => {
+        handleClose();
+      }}
+      visible={modal.open}
+      width={400}
+      className='drawer-arise-detail'
+    >
+      <>
+        <Form form={form} initialValues={item} onFinish={onFinish} layout='vertical'>
+          <Form.Item name='id' hidden>
+            <Input />
+          </Form.Item>
+          <Form.Item name='firstName' label='Họ'>
+            <Input />
+          </Form.Item>
+          <Form.Item name='fullName' label='Tên'>
+            <Input />
+          </Form.Item>
+          <Form.Item name='gender' label='Giới tính'>
+            <Select placeholder='Chọn' suffixIcon={<IconChevronDown />} optionFilterProp='children'>
+              {listGender.map((el: some, indx: number) => (
+                <Select.Option key={el.code} value={el.code}>
+                  {el.name}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item name='email' label='Email'>
+            <Input />
+          </Form.Item>
+          <Form.Item name='phone' label='Số điện thoại'>
+            <Input />
+          </Form.Item>
+          <Form.Item name='active' label='Trạng thái' valuePropName='checked'>
+            <Switch />
+          </Form.Item>
+          <Form.Item>
+            <Button htmlType='submit' type='primary' className='send-note'>
+              Xác nhận
+            </Button>
+          </Form.Item>
+        </Form>
+      </>
+    </Drawer>
+  );
+};

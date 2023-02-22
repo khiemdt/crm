@@ -92,7 +92,7 @@ export const getAllUserList = () => {
       email: 'test@gmail.com',
       phone: '0985284827',
       avatar: `https://picsum.photos/id/${idx + 1}/50/50 `,
-      active: true,
+      active: idx % 3 ? true : false,
     });
   });
 
