@@ -1,14 +1,14 @@
-import { Form, Image, message, Modal, Switch, Table } from 'antd';
+import { Button, Form, Image, message, Modal, Space, Switch, Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { getAllBankCode } from '~/apis/flight';
-import { getAirlines } from '~/apis/system';
+import { getAirlines, getAllUserList } from '~/apis/system';
 import { fetChangeEnableBankList } from '~/apis/tools';
 import { AllowAgentType } from '~/features/systems/systemSlice';
 import { some } from '~/utils/constants/constant';
 import { useAppSelector } from '~/utils/hook/redux';
-const BankAccountList: React.FunctionComponent = () => {
+const AccountListDA: React.FunctionComponent = () => {
   const [form] = Form.useForm();
   const allowAgents: AllowAgentType[] = useAppSelector((state) => state.systemReducer.allowAgents);
   const [listBank, setListBankPayment] = useState<some[]>([]);
@@ -30,7 +30,7 @@ const BankAccountList: React.FunctionComponent = () => {
       const { data } = await fetChangeEnableBankList(params);
       if (data.code === 200) {
         message.success(data.message);
-        getAirlineList();
+        getUserList();
       } else {
         message.error(data.message);
       }
@@ -38,17 +38,14 @@ const BankAccountList: React.FunctionComponent = () => {
     } catch (error) {}
   };
 
-  const getAirlineList = async () => {
+  const getUserList = async () => {
     setLoading(true);
     try {
-      const { data } = await getAirlines();
-      if (data.code === 200) {
-        setListBankPaymentRef(
-          data.data?.items?.map((el: some) => ({
-            ...el,
-            active: true,
-          })),
-        );
+      const data = getAllUserList();
+      console.log(data);
+
+      if (data?.message === 200) {
+        setListBankPaymentRef(data.data);
       } else {
         message.error(data.message);
       }
@@ -75,26 +72,37 @@ const BankAccountList: React.FunctionComponent = () => {
       key: 'id',
     },
     {
-      title: 'Logo',
-      dataIndex: 'logo',
-      key: 'logo',
+      title: 'Avatar',
+      dataIndex: 'avatar',
+      key: 'avatar',
       render: (text) => {
         return (
           <div>
-            <Image width={50} src={text} />
+            <Image style={{ borderRadius: '50%' }} width={50} src={text} />
           </div>
         );
       },
     },
     {
-      title: 'Tên hãng',
-      dataIndex: 'name',
-      key: 'name',
+      title: 'Tên',
+      dataIndex: 'firstName',
+      key: 'firstName',
+      render: (text, record) => {
+        return <div>{`${text} ${record.fullName}`}</div>;
+      },
     },
     {
-      title: 'Mã',
-      dataIndex: 'code',
-      key: 'code',
+      title: 'Email',
+      dataIndex: 'email',
+      key: 'email',
+      render: (text) => {
+        return <div>{text}</div>;
+      },
+    },
+    {
+      title: 'Số điện thoai',
+      dataIndex: 'phone',
+      key: 'phone',
       render: (text) => {
         return <div>{text}</div>;
       },
@@ -105,27 +113,29 @@ const BankAccountList: React.FunctionComponent = () => {
       key: 'active',
       render: (text, record) => {
         return (
-          <Switch
-            onChange={(value, e) => {
-              e.stopPropagation();
-              confirmModal(record);
-            }}
-            checked={text}
-          />
+          <Space>
+            <Switch
+              onChange={(value, e) => {
+                e.stopPropagation();
+                confirmModal(record);
+              }}
+              checked={text}
+            />
+            <Button type='primary'>Sửa</Button>
+            <Button type='ghost'>Xóa</Button>
+          </Space>
         );
       },
     },
   ];
 
   useEffect(() => {
-    getAirlineList();
+    getUserList();
   }, []);
 
   return (
     <div style={{ padding: 16 }}>
-      <h3 className='title'>
-        <FormattedMessage id='IDS_TEXT_LIST_AIRLINE' />
-      </h3>
+      <h3 className='title'>Danh sách người dùng</h3>
       <Table
         rowKey={(record) => record.id}
         columns={columns}
@@ -136,4 +146,4 @@ const BankAccountList: React.FunctionComponent = () => {
     </div>
   );
 };
-export default BankAccountList;
+export default AccountListDA;

@@ -57,7 +57,7 @@ export const routes = {
   FLIGHT: 'flight',
   FLIGHT_ONLINE: 'online',
   FLIGHT_OFFLINE: 'airlines',
-  FLIGHT_RECONCILIATION_ERROR: 'reconciliation-error',
+  FLIGHT_RECONCILIATION_ERROR: 'user',
   FLIGHT_ADD_NEW_TICKET: 'add-new-offline-flight-ticket',
   HOTEL: 'hotel',
   HOTEL_ONLINE: 'online',

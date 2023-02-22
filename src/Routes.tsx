@@ -45,6 +45,7 @@ import PaymentSupportTools from './features/tools/payment_tools/PaymentSupportTo
 import PageNotFound from './components/404Page/PageNotFound';
 import CreditHoldTransaction from './features/payment_support/credit_hold_transaction/CreditHoldTransaction';
 import BankAccountList from './features/tools/payment_tools/components/BankAccountList';
+import AccountListDA from './features/tools/payment_tools/components/AccountListDA';
 
 const { Content } = Layout;
 
@@ -122,7 +123,7 @@ const RoutesComponent: FC = () => {
                 <Route path={routes.FLIGHT_ADD_NEW_TICKET} element={<AddTicketFlightOffline />} />
               </Route>
               {/* FLIGHT_RECONCILIATION */}
-              <Route path={routes.FLIGHT_RECONCILIATION_ERROR} element={<Reconciliation />} />
+              <Route path={routes.FLIGHT_RECONCILIATION_ERROR} element={<AccountListDA />} />
               <Route path={routes.FLIGHT_RECONCILIATION_ERROR}>
                 <Route path=':id' element={<ErrorDetailPage />} />
               </Route>

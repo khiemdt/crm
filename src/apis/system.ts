@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import api from '~/utils/helpers/api';
 import { CRM_SERVICE, FLYX_SERVICE, ACCOUNT_SERVICE } from './../utils/constants/constant';
 
@@ -76,4 +77,27 @@ export const getAllCountries = () => {
     serVice: ACCOUNT_SERVICE,
   };
   return api(option);
+};
+
+export const getAllUserList = () => {
+  let listUser: any[] = [];
+  [...Array(50)].forEach((el: any, idx: number) => {
+    listUser.push({
+      id: idx + 1,
+      channelId: idx + 2,
+      gender: 'M',
+      firstName: 'Khanh',
+      lastName: 'Bui',
+      fullName: 'Bui Khanh',
+      email: 'test@gmail.com',
+      phone: '0985284827',
+      avatar: `https://picsum.photos/id/${idx + 1}/50/50 `,
+      active: true,
+    });
+  });
+
+  return {
+    data: listUser,
+    message: 200,
+  };
 };
