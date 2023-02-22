@@ -22,7 +22,7 @@ import LeftSideBar from '~/components/Layout/LeftSideBar';
 import Loading from '~/components/loading/Loading';
 import Dashboard from '~/features/example/Dashboard';
 import Login from '~/features/login/login';
-import { IS_COLLAPSIBLE, routes, some } from '~/utils/constants/constant';
+import { IS_COLLAPSIBLE, routes, some, TOKEN } from '~/utils/constants/constant';
 
 import '~/components/Layout/layout.scss';
 import Sample from '~/features/example/Sample';
@@ -46,6 +46,7 @@ import PageNotFound from './components/404Page/PageNotFound';
 import CreditHoldTransaction from './features/payment_support/credit_hold_transaction/CreditHoldTransaction';
 import BankAccountList from './features/tools/payment_tools/components/BankAccountList';
 import AccountListDA from './features/tools/payment_tools/components/AccountListDA';
+import Cookies from 'js-cookie';
 
 const { Content } = Layout;
 

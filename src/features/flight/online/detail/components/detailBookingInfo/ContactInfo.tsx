@@ -540,7 +540,7 @@ const ContactInfo = () => {
     <div className='contact-info'>
       <Row gutter={20} className='contact-info-box'>
         <Col xxl={8} xl={12}>
-          {/* {!isEmpty(booking?.userInfo) && (
+          {!isEmpty(booking?.userInfo) && (
             <>
               <div className='main-contact-info'>
                 <span className='text-bold'>Người đặt:</span>
@@ -562,8 +562,8 @@ const ContactInfo = () => {
                 </div>
               </div>
             </>
-          )} */}
-       
+          )}
+
           <div className='main-contact-info'>
             <span className='text-bold'>Người liên hệ:</span>
             <span>{`${booking?.mainContact?.fullName} `}</span>
